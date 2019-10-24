@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extentreports>
+    <configuration>
+        <encoding>UTF-8</encoding>
+        <documentTitle>ePax- UI Test Execution Summary</documentTitle>
+        <reportName>ePax - UI Test Report Name</reportName>
+        <reportHeadline>epax UI Test Automation</reportHeadline>
+    </configuration>
+</extentreports>

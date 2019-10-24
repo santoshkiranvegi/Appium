@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="run tests in parallel" parallel="tests" verbose="1" configfailurepolicy="continue" thread-count="2">
+    <listeners>
+        <listener class-name="com.epax.framework.base.WebDriverListener" />
+    </listeners>
+
+    <test name="Tests in iPhone Sim" >
+        <parameter name="browserName" value="iphonesim" />
+        <parameter name="OSName" value="mac" />
+        <classes>
+            <class name="com.epax.testrunners.RunCukesTestInIPhone"/>
+        </classes>
+    </test>
+    <test name="Tests in Android Phone Emulator" >
+        <parameter name="browserName" value="androidPhoneEmulator" />
+        <parameter name="OSName" value="mac" />
+        <classes>
+            <class name="com.epax.testrunners.RunCukesTestInAndroidPhone"/>
+        </classes>
+    </test>
+
+</suite>

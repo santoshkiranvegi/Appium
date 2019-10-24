@@ -1,0 +1,232 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>trt-epax-portal-ui-tests</artifactId>
+    <packaging>jar</packaging>
+    <name>EPAX-Portal-UI</name>
+    <properties>
+        <test.environment>qa</test.environment>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <googlchromedriverbinary.version>2.9</googlchromedriverbinary.version>
+        <source.and.target.JVM.version>1.8</source.and.target.JVM.version>
+        <surefire.fork.count>2</surefire.fork.count>
+        <com.lazerycode.selenium.version>1.0.17</com.lazerycode.selenium.version>
+        <cucumber.version>4.0.1</cucumber.version>
+        <cucumber-picocontainer.version>4.0.1</cucumber-picocontainer.version>
+        <info.cukes.cucumber-java.version>1.1.7-SNAPSHOT</info.cukes.cucumber-java.version>
+        <info.cukes.cucumber-testng.version>1.1.7-SNAPSHOT</info.cukes.cucumber-testng.version>
+        <info.cukes.cucumber-jvm-deps.version>1.0.3</info.cukes.cucumber-jvm-deps.version>
+        <log4j.log4j.version>1.2.17</log4j.log4j.version>
+        <org.apache.commons.commons-io.version>2.6</org.apache.commons.commons-io.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.1
+        </org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-surefire-plugin.version>2.16
+        </org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.codehaus.mojo.exec-maven-plugin.version>1.2.1</org.codehaus.mojo.exec-maven-plugin.version>
+        <org.hamcrest.hamcrest-library.version>1.3</org.hamcrest.hamcrest-library.version>
+        <org.seleniumhq.selenium.selenium-server.version>3.6.0</org.seleniumhq.selenium.selenium-server.version>
+        <org.testng.testng.version>7.0.0</org.testng.testng.version>
+    </properties>
+    <profiles>
+        <!-- to run one of the profiles defined below, simply add -P name_of_the_profile
+            to mvn command ie.: mvn clean test -P runTestsLocally -->
+        <profile>
+            <id>runTestsLocally</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <source>${source.and.target.JVM.version}</source>
+                            <target>${source.and.target.JVM.version}</target>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <testenvironment>${test.environment}</testenvironment>
+                            </systemPropertyVariables>
+                            <suiteXmlFiles>
+                                <file>GlobalTestRunner.xml</file>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <repositories>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <dependencies>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.2.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber-picocontainer.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.8</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0-rc3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.galenframework</groupId>
+            <artifactId>galen-java-support</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+        	<groupId>io.appium</groupId>
+        	<artifactId>java-client</artifactId>
+        	<version>6.1.0</version>
+        	</dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${org.apache.commons.commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Hamcrest is a framework for writing matcher objects allowing 'match'
+                rules to be defined declaratively. It nicely integrates with JUnit, making
+                assertions more descriptive. http://junit.sourceforge.net/javadoc/org/junit/Assert.html#assertThat(java.lang.String,
+                T, org.hamcrest.Matcher) http://code.google.com/p/hamcrest/wiki/Tutorial -->
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${org.hamcrest.hamcrest-library.version}</version>
+        </dependency>
+        <dependency>
+            <!-- A handy plugin that allows you to download driver binaries automatically
+                To download desired driver binaries, call the plugin like that: mvn clean
+                com.lazerycode.selenium:driver-binary-downloader-maven-plugin:selenium to
+                src: http://ardesco.lazerycode.com/index.php/2012/08/introducing-the-driver-binary-downloader-maven-plugin-for-selenium/ -->
+            <groupId>com.lazerycode.selenium</groupId>
+            <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+            <version>${com.lazerycode.selenium.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Required by JSONReportMerger -->
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-remote-driver</artifactId>
+         <version>3.141.59</version>
+         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports-cucumber4-adapter</artifactId>
+            <version>1.0.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>cucumber-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>cucumber-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
+        </dependency>
+    </dependencies>
+    <groupId>gateretail</groupId>
+    <version>1.1</version>
+</project>
