@@ -18,7 +18,7 @@
         <info.cukes.cucumber-testng.version>1.1.7-SNAPSHOT</info.cukes.cucumber-testng.version>
         <info.cukes.cucumber-jvm-deps.version>1.0.3</info.cukes.cucumber-jvm-deps.version>
         <log4j.log4j.version>1.2.17</log4j.log4j.version>
-        <org.apache.commons.commons-io.version>2.6</org.apache.commons.commons-io.version>
+        <org.apache.commons.commons-io.version>2.7</org.apache.commons.commons-io.version>
         <org.apache.maven.plugins.maven-compiler-plugin.version>3.1
         </org.apache.maven.plugins.maven-compiler-plugin.version>
         <org.apache.maven.plugins.maven-surefire-plugin.version>2.16
